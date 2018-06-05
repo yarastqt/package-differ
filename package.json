@@ -1,6 +1,9 @@
 {
   "name": "package-differ",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yarastqt/package-differ.git"
