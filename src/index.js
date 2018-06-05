@@ -3,6 +3,8 @@
 import { resolve } from 'path'
 import { readdirSync } from 'fs'
 import commander from 'commander'
+// $FlowFixMe (ignore next line because of import from JSON not typed)
+import { version } from '../package'
 
 
 readdirSync(resolve(__dirname, 'commands'))
@@ -12,4 +14,5 @@ readdirSync(resolve(__dirname, 'commands'))
   })
 
 commander
+  .version(version, '-v, --version')
   .parse(process.argv)
