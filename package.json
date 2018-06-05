@@ -14,6 +14,12 @@
     "url": "https://github.com/yarastqt/package-differ/issues"
   },
   "homepage": "https://github.com/yarastqt/package-differ#readme",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "fast-glob": "^2.2.2",
+    "inquirer": "^6.0.0",
+    "semver": "^5.5.0"
+  },
   "devDependencies": {
     "@atomix/eslint-config": "^6.4.0",
     "babel-cli": "^6.26.0",
