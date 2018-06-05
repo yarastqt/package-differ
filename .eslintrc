@@ -1,0 +1,38 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
+  "extends": "@atomix/eslint-config",
+  "rules": {
+    "no-console": "off",
+    "no-template-curly-in-string": "off",
+    "unicorn/no-process-exit": "off",
+    "unicorn/custom-error-definition": "off",
+    "import/extensions": [
+      "error",
+      "never"
+    ],
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArray": false,
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        "allowLiteral": false,
+        "allowObject": false
+      }
+    ],
+    "max-len": [
+      "error",
+      120
+    ]
+  }
+}
