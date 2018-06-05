@@ -10,7 +10,8 @@ import { version } from '../package'
 readdirSync(resolve(__dirname, 'commands'))
   .forEach((fileName) => {
     // eslint-disable-next-line global-require, import/no-dynamic-require
-    require(resolve(__dirname, 'commands', fileName))(commander)
+    require(resolve(__dirname, 'commands', fileName))
+      .run(commander)
   })
 
 commander
