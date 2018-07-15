@@ -4,6 +4,9 @@
   "engines": {
     "node": ">=8.0.0"
   },
+  "bin": {
+    "differ": "./bin/differ"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yarastqt/package-differ.git"
