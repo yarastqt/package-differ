@@ -5,11 +5,17 @@
     "es6": true,
     "node": true
   },
+  "globals": {
+    "Package": true
+  },
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2017
   },
   "extends": "@atomix/eslint-config",
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
     "no-console": "off",
     "no-template-curly-in-string": "off",
