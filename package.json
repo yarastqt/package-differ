@@ -7,6 +7,10 @@
   "bin": {
     "differ": "./bin/differ"
   },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yarastqt/package-differ.git"
