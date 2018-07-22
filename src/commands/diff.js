@@ -6,6 +6,7 @@ import fastGlob from 'fast-glob'
 
 import { readJson } from 'utils/json'
 import { stripDependencyRanges } from 'utils/string'
+import { progress } from 'utils/progress'
 
 
 type DependentPackages = {
@@ -63,9 +64,13 @@ function getDiffDependentPackages(dependent: DependentPackages) {
 }
 
 async function diff(packageName: string) {
+  progress.start()
+
   const entries = await fastGlob(['**/package.json', '!**/node_modules/**/package.json'])
   const dependent = getDependentPackages(entries, packageName)
   const packageDependencies = getDiffDependentPackages(dependent)
+
+  progress.stop()
 
   if (packageDependencies.length > 0) {
     const result = packageDependencies

@@ -25,6 +25,7 @@
     "commander": "^2.15.1",
     "fast-glob": "^2.2.2",
     "inquirer": "^6.0.0",
+    "node-status": "^1.0.0",
     "semver": "^5.5.0"
   },
   "devDependencies": {
