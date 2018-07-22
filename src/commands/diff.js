@@ -69,7 +69,7 @@ function getDiffDependentPackages(dependent: DependentPackages) {
     const isValidSemVer = semver.valid(dependencyVersion)
     const semVerDifference = semver.compare(dependencyVersion, dependent.package.version)
 
-    if (isValidSemVer !== null && semVerDifference === -1) {
+    if (isValidSemVer !== null && (semVerDifference === 1 || semVerDifference === -1)) {
       return [...acc, { type, name, version, path }]
     }
 
