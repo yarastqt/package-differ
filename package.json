@@ -44,6 +44,7 @@
     "build": "babel ./src --out-dir lib",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "dev:watch": "npm run build -- --watch",
+    "prepare": "npm run build",
     "test:flow": "flow",
     "test:lint": "eslint ./src"
   }
