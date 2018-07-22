@@ -77,6 +77,12 @@ async function diff(packageName: string) {
     console.log('Not actual in:')
     console.log(result)
   }
+  else if (dependent.package.name === '') {
+    console.log(`Package ${packageName} not found in project`)
+  }
+  else {
+    console.log(`Package ${packageName} is not used anywhere`)
+  }
 }
 
 export function run(programm: typeof commander) {
