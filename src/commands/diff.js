@@ -17,8 +17,18 @@ type DependentPackages = {
   packages: {
     name: string,
     path: string,
+    type: string,
     version: string,
   }[],
+}
+
+function getDependencyType(dependencyName: string, deps: any) {
+  return Object.keys(deps).reduce((type, key) => {
+    if (deps[key] !== undefined && deps[key][dependencyName] !== undefined) {
+      return key
+    }
+    return type
+  }, '')
 }
 
 function getDependentPackages(entries: string[], packageName: string): DependentPackages {
@@ -38,11 +48,13 @@ function getDependentPackages(entries: string[], packageName: string): Dependent
       .some((dependencyName) => dependencyName === packageName)
 
     if (hasPackageInDependencies) {
+      const type = getDependencyType(packageName, deps)
+
       return {
         ...acc,
         packages: [
           ...acc.packages,
-          { name, path: packagePath, version: flattenDeps[packageName] },
+          { name, type, path: packagePath, version: flattenDeps[packageName] },
         ],
       }
     }
@@ -52,13 +64,13 @@ function getDependentPackages(entries: string[], packageName: string): Dependent
 }
 
 function getDiffDependentPackages(dependent: DependentPackages) {
-  return dependent.packages.reduce((acc, { version, name, path }) => {
+  return dependent.packages.reduce((acc, { type, version, name, path }) => {
     const dependencyVersion = stripDependencyRanges(version)
     const isValidSemVer = semver.valid(dependencyVersion)
     const semVerDifference = semver.compare(dependencyVersion, dependent.package.version)
 
     if (isValidSemVer !== null && semVerDifference === -1) {
-      return [...acc, { name, version, path }]
+      return [...acc, { type, name, version, path }]
     }
 
     return acc
@@ -76,7 +88,7 @@ async function diff(packageName: string) {
 
   if (packageDependencies.length > 0) {
     const result = packageDependencies
-      .map(({ name, version }) => `* ${name}: ${version}`)
+      .map(({ type, name, version }) => `* ${name}: ${version} [${type}]`)
       .join('\n')
 
     console.log(`Package: ${dependent.package.name}`)
