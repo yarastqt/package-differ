@@ -3,6 +3,7 @@
 import commander from 'commander'
 import semver from 'semver'
 import fastGlob from 'fast-glob'
+import packageJson from 'package-json'
 
 import { readJson } from 'utils/json'
 import { stripDependencyRanges } from 'utils/string'
@@ -87,12 +88,16 @@ async function diff(packageName: string) {
   progress.stop()
 
   if (packageDependencies.length > 0) {
+    const { version: registryVersion } = await packageJson(packageName)
     const result = packageDependencies
       .map(({ type, name, version }) => `* ${name}: ${version} [${type}]`)
       .join('\n')
+    const packageVersionMessage = semver.compare(dependent.package.version, registryVersion) !== -1
+      ? `Version: ${dependent.package.version}`
+      : `Version: ${dependent.package.version} (latest: ${registryVersion})`
 
     console.log(`Package: ${dependent.package.name}`)
-    console.log(`Version: ${dependent.package.version}`)
+    console.log(packageVersionMessage)
     console.log('Not actual in:')
     console.log(result)
   }
