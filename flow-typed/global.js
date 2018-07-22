@@ -4,6 +4,12 @@ declare module 'fast-glob' {
   declare export default glob
 }
 
+declare module 'package-json' {
+  // TODO: add declaration
+  declare function packageJson(): any
+  declare export default packageJson
+}
+
 declare type Package = {
   name: string,
   version: string,
