@@ -23,7 +23,7 @@ type DependentPackages = {
 
 function getDependentPackages(entries: string[], packageName: string): DependentPackages {
   return entries.reduce((acc, packagePath) => {
-    const { name, version, dependencies = {} }: Package = readJson(packagePath)
+    const { name, version, ...rest }: Package = readJson(packagePath)
 
     if (name === packageName) {
       return {
@@ -32,7 +32,9 @@ function getDependentPackages(entries: string[], packageName: string): Dependent
       }
     }
 
-    const hasPackageInDependencies = Object.keys(dependencies)
+    const deps = { prod: rest.dependencies, dev: rest.devDependencies, peer: rest.peerDependencies }
+    const flattenDeps = Object.keys(deps).reduce((accDeps, key) => ({ ...accDeps, ...deps[key] }), {})
+    const hasPackageInDependencies = Object.keys(flattenDeps)
       .some((dependencyName) => dependencyName === packageName)
 
     if (hasPackageInDependencies) {
@@ -40,7 +42,7 @@ function getDependentPackages(entries: string[], packageName: string): Dependent
         ...acc,
         packages: [
           ...acc.packages,
-          { name, path: packagePath, version: dependencies[packageName] },
+          { name, path: packagePath, version: flattenDeps[packageName] },
         ],
       }
     }
