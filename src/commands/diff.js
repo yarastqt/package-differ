@@ -43,6 +43,7 @@ function getDependentPackages(entries: string[], packageName: string): Dependent
         ],
       }
     }
+
     return acc
   }, { package: { name: '', version: '' }, packages: [] })
 }
