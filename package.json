@@ -39,13 +39,15 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.19.1",
     "eslint-plugin-flowtype": "^2.50.0",
-    "flow-bin": "^0.73.0"
+    "flow-bin": "^0.73.0",
+    "husky": "^0.14.3"
   },
   "scripts": {
     "build": "babel ./src --out-dir lib",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "dev:watch": "npm run build -- --watch",
     "prepare": "npm run build",
+    "prepush": "npm run test",
     "test:flow": "flow",
     "test:lint": "eslint ./src",
     "test": "npm run test:lint && npm run test:flow"
