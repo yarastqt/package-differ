@@ -10,6 +10,12 @@ declare module 'package-json' {
   declare export default packageJson
 }
 
+declare module 'ora' {
+  // TODO: add declaration
+  declare function ora(): any
+  declare export default ora
+}
+
 declare type Package = {
   name: string,
   version: string,
