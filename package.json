@@ -47,6 +47,7 @@
     "dev:watch": "npm run build -- --watch",
     "prepare": "npm run build",
     "test:flow": "flow",
-    "test:lint": "eslint ./src"
+    "test:lint": "eslint ./src",
+    "test": "npm run test:lint && npm run test:flow"
   }
 }
