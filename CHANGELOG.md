@@ -1,3 +1,18 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/yarastqt/package-differ/compare/v1.1.0...v1.2.0) (2018-07-23)
+
+
+### Bug Fixes
+
+* **commands/diff:** check if left is greater right version ([a7aa882](https://github.com/yarastqt/package-differ/commit/a7aa882))
+
+
+### Features
+
+* **commands/diff:** show latest version of current package ([7eeedfb](https://github.com/yarastqt/package-differ/commit/7eeedfb))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/yarastqt/package-differ/compare/v1.0.0...v1.1.0) (2018-07-22)
 
