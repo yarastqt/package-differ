@@ -89,7 +89,7 @@ async function diff(packageName: string) {
 
   if (packageDependencies.length > 0) {
     const { version: registryVersion } = await packageJson(packageName)
-    const result = packageDependencies
+    const packagesList = packageDependencies
       .map(({ type, name, version }) => `* ${name}: ${version} [${type}]`)
       .join('\n')
     const packageVersionMessage = semver.compare(dependent.package.version, registryVersion) !== -1
@@ -99,7 +99,7 @@ async function diff(packageName: string) {
     console.log(`Package: ${dependent.package.name}`)
     console.log(packageVersionMessage)
     console.log('Not actual in:')
-    console.log(result)
+    console.log(packagesList)
   }
   else if (dependent.package.name === '') {
     console.log(`Package ${packageName} not found in project`)
