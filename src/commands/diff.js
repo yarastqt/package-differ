@@ -4,10 +4,10 @@ import commander from 'commander'
 import semver from 'semver'
 import fastGlob from 'fast-glob'
 import packageJson from 'package-json'
+import ora from 'ora'
 
 import { readJson } from 'utils/json'
 import { stripDependencyRanges } from 'utils/string'
-import { progress } from 'utils/progress'
 
 
 type DependentPackages = {
@@ -79,13 +79,15 @@ function getDiffDependentPackages(dependent: DependentPackages) {
 }
 
 async function diff(packageName: string) {
-  progress.start()
+  const spinner = ora({ text: 'Search dependent packages' })
+
+  spinner.start()
 
   const entries = await fastGlob(['**/package.json', '!**/node_modules/**/package.json'])
   const dependent = getDependentPackages(entries, packageName)
   const packageDependencies = getDiffDependentPackages(dependent)
 
-  progress.stop()
+  spinner.stop()
 
   if (packageDependencies.length > 0) {
     const { version: registryVersion } = await packageJson(packageName)
