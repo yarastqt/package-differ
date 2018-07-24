@@ -32,7 +32,7 @@ function getDependencyType(dependencyName: string, deps: any) {
   }, '')
 }
 
-function getDependentPackages(entries: string[], packageName: string): DependentPackages {
+function getDependentPackages(packageName: string, entries: string[]): DependentPackages {
   return entries.reduce((acc, packagePath) => {
     const { name, version, ...rest }: Package = readJson(packagePath)
 
@@ -84,7 +84,7 @@ async function diff(packageName: string) {
   spinner.start()
 
   const entries = await fastGlob(['**/package.json', '!**/node_modules/**/package.json'])
-  const dependent = getDependentPackages(entries, packageName)
+  const dependent = getDependentPackages(packageName, entries)
   const packageDependencies = getDiffDependentPackages(dependent)
 
   spinner.stop()
