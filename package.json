@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/yarastqt/package-differ#readme",
   "dependencies": {
-    "commander": "^2.15.1",
+    "commander": "^2.16.0",
     "fast-glob": "^2.2.2",
     "inquirer": "^6.0.0",
     "ora": "^3.0.0",
@@ -32,14 +32,14 @@
   "devDependencies": {
     "@atomix/eslint-config": "^6.4.0",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^8.2.6",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.19.1",
     "eslint-plugin-flowtype": "^2.50.0",
-    "flow-bin": "^0.73.0",
+    "flow-bin": "^0.77.0",
     "husky": "^0.14.3"
   },
   "scripts": {
