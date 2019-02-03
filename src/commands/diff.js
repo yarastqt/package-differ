@@ -44,7 +44,8 @@ function getDependentPackages(packageName: string, entries: string[]): Dependent
     }
 
     const deps = { prod: rest.dependencies, dev: rest.devDependencies, peer: rest.peerDependencies }
-    const flattenDeps = Object.keys(deps).reduce((accDeps, key) => ({ ...accDeps, ...deps[key] }), {})
+    const flattenDeps = Object.keys(deps)
+      .reduce((accDeps, key) => ({ ...accDeps, ...deps[key] }), {})
     const hasPackageInDependencies = Object.keys(flattenDeps)
       .some((dependencyName) => dependencyName === packageName)
 
